@@ -1,0 +1,10 @@
+<resources>
+    <string name="list_title">Публикации</string>
+    <string name="back">Назад</string>
+    <string name="theme_toggle">Переключить тему</string>
+    <string name="authors_label">Авторы</string>
+    <string name="publication_date_label">Дата публикации</string>
+    <string name="subjects_label">Тематики</string>
+    <string name="publisher_label">Издатель</string>
+    <string name="type_label">Тип</string>
+</resources>
