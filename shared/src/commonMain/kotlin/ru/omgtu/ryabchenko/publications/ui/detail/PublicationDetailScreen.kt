@@ -1,7 +1,9 @@
 package ru.omgtu.ryabchenko.publications.ui.detail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -16,15 +18,18 @@ import publicationscmp.shared.generated.resources.Res
 import publicationscmp.shared.generated.resources.authors_label
 import publicationscmp.shared.generated.resources.publication_date_label
 import publicationscmp.shared.generated.resources.publisher_label
+import publicationscmp.shared.generated.resources.related_label
 import publicationscmp.shared.generated.resources.subjects_label
 import publicationscmp.shared.generated.resources.type_label
-import ru.omgtu.ryabchenko.publications.domain.Publication
 
 @Composable
 fun PublicationDetailScreen(
-    publication: Publication,
+    state: PublicationDetailState,
+    onIntent: (PublicationDetailIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val publication = state.publication
+
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -39,6 +44,21 @@ fun PublicationDetailScreen(
         DetailField(stringResource(Res.string.subjects_label), publication.subjects.joinToString(", "))
         Spacer(Modifier.height(16.dp))
         Text(publication.description, style = MaterialTheme.typography.bodyLarge)
+        if (state.related.isNotEmpty()) {
+            Spacer(Modifier.height(24.dp))
+            Text(stringResource(Res.string.related_label), style = MaterialTheme.typography.titleMedium)
+            state.related.forEach { related ->
+                Text(
+                    text = related.mainTitle,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onIntent(PublicationDetailIntent.RelatedClicked(related.id)) }
+                        .padding(vertical = 8.dp),
+                )
+            }
+        }
     }
 }
 

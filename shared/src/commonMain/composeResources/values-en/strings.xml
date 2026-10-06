@@ -8,4 +8,5 @@
     <string name="publisher_label">Publisher</string>
     <string name="type_label">Type</string>
     <string name="search_hint">Search by title</string>
+    <string name="related_label">Related publications</string>
 </resources>

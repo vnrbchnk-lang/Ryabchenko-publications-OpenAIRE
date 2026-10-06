@@ -8,4 +8,5 @@
     <string name="publisher_label">Издатель</string>
     <string name="type_label">Тип</string>
     <string name="search_hint">Поиск по названию</string>
+    <string name="related_label">Похожие публикации</string>
 </resources>

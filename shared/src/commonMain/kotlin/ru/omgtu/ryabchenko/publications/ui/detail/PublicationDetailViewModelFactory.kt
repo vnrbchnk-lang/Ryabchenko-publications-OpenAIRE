@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.MutableCreationExtras
 import ru.omgtu.ryabchenko.publications.domain.PublicationRepository
+import ru.omgtu.ryabchenko.publications.ui.navigation.Navigator
 import kotlin.reflect.KClass
 
 class PublicationDetailViewModelFactory(
+    private val navigator: Navigator,
     private val repository: PublicationRepository,
 ) : ViewModelProvider.Factory {
 
@@ -16,6 +18,7 @@ class PublicationDetailViewModelFactory(
         @Suppress("UNCHECKED_CAST")
         return PublicationDetailViewModel(
             publicationId = publicationId,
+            navigator = navigator,
             repository = repository,
         ) as T
     }

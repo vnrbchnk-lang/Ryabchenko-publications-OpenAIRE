@@ -33,7 +33,7 @@ fun App() {
     val repository: PublicationRepository = remember { PublicationRepositoryImpl() }
     val navigator = remember { Navigator() }
     val listViewModelFactory = remember { PublicationListViewModelFactory(navigator, repository) }
-    val detailViewModelFactory = remember { PublicationDetailViewModelFactory(repository) }
+    val detailViewModelFactory = remember { PublicationDetailViewModelFactory(navigator, repository) }
     val backStack by navigator.navStack.collectAsStateWithLifecycle()
 
     AppTheme(darkTheme) {
