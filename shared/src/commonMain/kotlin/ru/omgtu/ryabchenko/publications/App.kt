@@ -8,26 +8,33 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import publicationscmp.shared.generated.resources.Res
 import publicationscmp.shared.generated.resources.back
 import publicationscmp.shared.generated.resources.list_title
 import publicationscmp.shared.generated.resources.theme_toggle
-import ru.omgtu.ryabchenko.publications.data.mockPublications
+import ru.omgtu.ryabchenko.publications.data.PublicationRepositoryImpl
+import ru.omgtu.ryabchenko.publications.domain.PublicationRepository
+import ru.omgtu.ryabchenko.publications.ui.detail.PublicationDetailViewModelFactory
+import ru.omgtu.ryabchenko.publications.ui.list.PublicationListViewModelFactory
 import ru.omgtu.ryabchenko.publications.ui.navigation.AppNavDisplay
-import ru.omgtu.ryabchenko.publications.ui.navigation.Route
+import ru.omgtu.ryabchenko.publications.ui.navigation.Navigator
 import ru.omgtu.ryabchenko.publications.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App() {
     var darkTheme by remember { mutableStateOf(false) }
-    val backStack = remember { mutableStateListOf<Route>(Route.List) }
+    val repository: PublicationRepository = remember { PublicationRepositoryImpl() }
+    val navigator = remember { Navigator() }
+    val listViewModelFactory = remember { PublicationListViewModelFactory(navigator, repository) }
+    val detailViewModelFactory = remember { PublicationDetailViewModelFactory(repository) }
+    val backStack by navigator.navStack.collectAsStateWithLifecycle()
 
     AppTheme(darkTheme) {
         Scaffold(
@@ -36,7 +43,7 @@ fun App() {
                     title = { Text(stringResource(Res.string.list_title)) },
                     navigationIcon = {
                         if (backStack.size > 1) {
-                            TextButton(onClick = { backStack.removeLastOrNull() }) {
+                            TextButton(onClick = navigator::back) {
                                 Text(stringResource(Res.string.back))
                             }
                         }
@@ -50,8 +57,9 @@ fun App() {
             },
         ) { insets ->
             AppNavDisplay(
-                backStack = backStack,
-                publications = mockPublications,
+                navigator = navigator,
+                listViewModelFactory = listViewModelFactory,
+                detailViewModelFactory = detailViewModelFactory,
                 modifier = Modifier.padding(insets),
             )
         }

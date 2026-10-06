@@ -20,8 +20,8 @@ import ru.omgtu.ryabchenko.publications.domain.Publication
 
 @Composable
 fun PublicationListScreen(
-    publications: List<Publication>,
-    onPublicationClick: (String) -> Unit,
+    state: PublicationListState,
+    onIntent: (PublicationListIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -29,10 +29,10 @@ fun PublicationListScreen(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(publications, key = { it.id }) { publication ->
+        items(state.items, key = { it.id }) { publication ->
             PublicationCard(
                 publication = publication,
-                onClick = { onPublicationClick(publication.id) },
+                onClick = { onIntent(PublicationListIntent.CardClicked(publication.id)) },
             )
         }
     }
