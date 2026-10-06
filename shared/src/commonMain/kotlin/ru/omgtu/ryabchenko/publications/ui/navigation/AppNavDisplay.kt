@@ -54,6 +54,7 @@ fun AppNavDisplay(
         },
         transitionSpec = { slide(SlideDirection.Start) },
         popTransitionSpec = { slide(SlideDirection.End) },
+        predictivePopTransitionSpec = { slide(SlideDirection.End) },
     )
 }
 

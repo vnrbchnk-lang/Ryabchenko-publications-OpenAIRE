@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import publicationscmp.shared.generated.resources.Res
+import publicationscmp.shared.generated.resources.app_title
 import publicationscmp.shared.generated.resources.back
-import publicationscmp.shared.generated.resources.list_title
 import publicationscmp.shared.generated.resources.theme_toggle
 import ru.omgtu.ryabchenko.publications.data.PublicationRepositoryImpl
 import ru.omgtu.ryabchenko.publications.domain.PublicationRepository
@@ -40,7 +40,7 @@ fun App() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(Res.string.list_title)) },
+                    title = { Text(stringResource(Res.string.app_title)) },
                     navigationIcon = {
                         if (backStack.size > 1) {
                             TextButton(onClick = navigator::back) {
