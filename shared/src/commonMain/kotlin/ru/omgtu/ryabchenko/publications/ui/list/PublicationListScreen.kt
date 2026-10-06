@@ -12,10 +12,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import publicationscmp.shared.generated.resources.Res
+import publicationscmp.shared.generated.resources.search_hint
 import ru.omgtu.ryabchenko.publications.domain.Publication
 
 @Composable
@@ -24,16 +28,26 @@ fun PublicationListScreen(
     onIntent: (PublicationListIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        items(state.items, key = { it.id }) { publication ->
-            PublicationCard(
-                publication = publication,
-                onClick = { onIntent(PublicationListIntent.CardClicked(publication.id)) },
-            )
+    Column(modifier) {
+        OutlinedTextField(
+            value = state.query,
+            onValueChange = { onIntent(PublicationListIntent.QueryChanged(it)) },
+            label = { Text(stringResource(Res.string.search_hint)) },
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+        )
+        LazyColumn(
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            items(state.items, key = { it.id }) { publication ->
+                PublicationCard(
+                    publication = publication,
+                    onClick = { onIntent(PublicationListIntent.CardClicked(publication.id)) },
+                )
+            }
         }
     }
 }

@@ -7,4 +7,5 @@
     <string name="subjects_label">Тематики</string>
     <string name="publisher_label">Издатель</string>
     <string name="type_label">Тип</string>
+    <string name="search_hint">Поиск по названию</string>
 </resources>
