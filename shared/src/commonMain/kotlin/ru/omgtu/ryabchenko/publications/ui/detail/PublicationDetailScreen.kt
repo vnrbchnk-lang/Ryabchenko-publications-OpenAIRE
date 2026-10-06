@@ -18,7 +18,7 @@ import publicationscmp.shared.generated.resources.publication_date_label
 import publicationscmp.shared.generated.resources.publisher_label
 import publicationscmp.shared.generated.resources.subjects_label
 import publicationscmp.shared.generated.resources.type_label
-import ru.omgtu.ryabchenko.publications.data.Publication
+import ru.omgtu.ryabchenko.publications.domain.Publication
 
 @Composable
 fun PublicationDetailScreen(

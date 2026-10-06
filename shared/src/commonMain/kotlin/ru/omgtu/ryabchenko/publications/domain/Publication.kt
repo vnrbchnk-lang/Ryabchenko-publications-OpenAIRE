@@ -1,4 +1,4 @@
-package ru.omgtu.ryabchenko.publications.data
+package ru.omgtu.ryabchenko.publications.domain
 
 data class Publication(
     val id: String,

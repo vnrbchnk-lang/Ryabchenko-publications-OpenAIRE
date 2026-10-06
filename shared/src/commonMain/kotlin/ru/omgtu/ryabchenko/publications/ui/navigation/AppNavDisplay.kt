@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.ui.NavDisplay
-import ru.omgtu.ryabchenko.publications.data.Publication
+import ru.omgtu.ryabchenko.publications.domain.Publication
 import ru.omgtu.ryabchenko.publications.ui.detail.PublicationDetailScreen
 import ru.omgtu.ryabchenko.publications.ui.list.PublicationListScreen
 

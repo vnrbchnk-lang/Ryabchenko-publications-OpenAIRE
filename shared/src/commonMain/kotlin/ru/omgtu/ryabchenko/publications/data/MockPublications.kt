@@ -1,5 +1,7 @@
 package ru.omgtu.ryabchenko.publications.data
 
+import ru.omgtu.ryabchenko.publications.domain.Publication
+
 val mockPublications = listOf(
     Publication(
         id = "pub-0001",

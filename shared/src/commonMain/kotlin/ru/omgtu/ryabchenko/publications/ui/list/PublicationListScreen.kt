@@ -16,7 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.omgtu.ryabchenko.publications.data.Publication
+import ru.omgtu.ryabchenko.publications.domain.Publication
 
 @Composable
 fun PublicationListScreen(
