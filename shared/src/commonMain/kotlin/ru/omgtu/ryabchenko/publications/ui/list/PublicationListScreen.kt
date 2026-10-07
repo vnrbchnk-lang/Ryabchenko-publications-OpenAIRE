@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import publicationscmp.shared.generated.resources.Res
+import publicationscmp.shared.generated.resources.nothing_found
 import publicationscmp.shared.generated.resources.search_hint
 import ru.omgtu.ryabchenko.publications.domain.Publication
 
@@ -38,15 +39,23 @@ fun PublicationListScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 8.dp),
         )
-        LazyColumn(
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(state.items, key = { it.id }) { publication ->
-                PublicationCard(
-                    publication = publication,
-                    onClick = { onIntent(PublicationListIntent.CardClicked(publication.id)) },
-                )
+        if (state.items.isEmpty()) {
+            Text(
+                text = stringResource(Res.string.nothing_found),
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp),
+            )
+        } else {
+            LazyColumn(
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(state.items, key = { it.id }) { publication ->
+                    PublicationCard(
+                        publication = publication,
+                        onClick = { onIntent(PublicationListIntent.CardClicked(publication.id)) },
+                    )
+                }
             }
         }
     }
