@@ -7,6 +7,6 @@ data class Publication(
     val publicationDate: String,
     val description: String,
     val subjects: List<String>,
-    val type: String,
+    val type: PublicationType,
     val publisher: String,
 )
