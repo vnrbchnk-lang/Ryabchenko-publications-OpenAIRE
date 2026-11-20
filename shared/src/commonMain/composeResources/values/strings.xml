@@ -10,4 +10,14 @@
     <string name="search_hint">Поиск по названию</string>
     <string name="nothing_found">Ничего не найдено</string>
     <string name="related_label">Похожие публикации</string>
+    <string name="empty_list">Публикаций нет</string>
+    <string name="retry">Повторить</string>
+    <string name="error_no_connection">Нет соединения</string>
+    <string name="error_timeout">Сервер не отвечает</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="error_bad_response">Не удалось разобрать ответ</string>
+    <string name="type_publication">Публикация</string>
+    <string name="type_dataset">Датасет</string>
+    <string name="type_software">Программа</string>
+    <string name="type_other">Другое</string>
 </resources>

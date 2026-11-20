@@ -10,4 +10,14 @@
     <string name="search_hint">Search by title</string>
     <string name="nothing_found">Nothing found</string>
     <string name="related_label">Related publications</string>
+    <string name="empty_list">No publications</string>
+    <string name="retry">Retry</string>
+    <string name="error_no_connection">No connection</string>
+    <string name="error_timeout">Server is not responding</string>
+    <string name="error_server">Server error</string>
+    <string name="error_bad_response">Could not parse the response</string>
+    <string name="type_publication">Publication</string>
+    <string name="type_dataset">Dataset</string>
+    <string name="type_software">Software</string>
+    <string name="type_other">Other</string>
 </resources>
