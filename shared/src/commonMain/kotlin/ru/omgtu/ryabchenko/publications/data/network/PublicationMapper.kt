@@ -7,10 +7,10 @@ import ru.omgtu.ryabchenko.publications.domain.PublicationType
 fun PublicationDto.toModel(): Publication = Publication(
     id = id,
     mainTitle = plainText(mainTitle),
-    authors = authors.mapNotNull { cleanName(it.fullName) },
+    authors = authors.orEmpty().mapNotNull { cleanName(it.fullName) },
     publicationDate = publicationDate.orEmpty(),
-    description = plainText(descriptions.firstOrNull()),
-    subjects = subjects.mapNotNull { it.subject?.value },
+    description = plainText(descriptions?.firstOrNull()),
+    subjects = subjects.orEmpty().mapNotNull { it.subject?.value },
     type = publicationType(type),
     publisher = publisher.orEmpty(),
 )

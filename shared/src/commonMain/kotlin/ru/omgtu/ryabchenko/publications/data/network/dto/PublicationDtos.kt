@@ -20,10 +20,10 @@ data class PublicationDto(
     val id: String = "",
     val mainTitle: String? = null,
     val type: String? = null,
-    val authors: List<AuthorDto> = emptyList(),
+    val authors: List<AuthorDto>? = null,
     val publicationDate: String? = null,
-    val descriptions: List<String> = emptyList(),
-    val subjects: List<SubjectDto> = emptyList(),
+    val descriptions: List<String>? = null,
+    val subjects: List<SubjectDto>? = null,
     val publisher: String? = null,
 )
 
