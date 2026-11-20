@@ -49,7 +49,7 @@ fun AppNavDisplay(
                     extras = PublicationDetailViewModelFactory.extrasFor(route.id),
                 )
                 val state by viewModel.state.collectAsStateWithLifecycle()
-                state?.let { PublicationDetailScreen(state = it, onIntent = viewModel::onIntent) }
+                PublicationDetailScreen(state = state, onIntent = viewModel::onIntent)
             }
         },
         transitionSpec = { slide(SlideDirection.Start) },

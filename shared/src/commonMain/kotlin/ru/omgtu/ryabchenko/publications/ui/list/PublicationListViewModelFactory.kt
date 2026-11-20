@@ -3,6 +3,7 @@ package ru.omgtu.ryabchenko.publications.ui.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
+import ru.omgtu.ryabchenko.publications.domain.LoadPublicationsUseCase
 import ru.omgtu.ryabchenko.publications.domain.PublicationRepository
 import ru.omgtu.ryabchenko.publications.ui.navigation.Navigator
 import kotlin.reflect.KClass
@@ -14,6 +15,14 @@ class PublicationListViewModelFactory(
 
     override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T {
         @Suppress("UNCHECKED_CAST")
-        return PublicationListViewModel(navigator = navigator, repository = repository) as T
+        return PublicationListViewModel(
+            navigator = navigator,
+            repository = repository,
+            loadPublications = LoadPublicationsUseCase(repository = repository, pageSize = PAGE_SIZE),
+        ) as T
+    }
+
+    private companion object {
+        const val PAGE_SIZE = 20
     }
 }

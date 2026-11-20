@@ -18,7 +18,9 @@ import publicationscmp.shared.generated.resources.Res
 import publicationscmp.shared.generated.resources.app_title
 import publicationscmp.shared.generated.resources.back
 import publicationscmp.shared.generated.resources.theme_toggle
-import ru.omgtu.ryabchenko.publications.data.PublicationRepositoryImpl
+import ru.omgtu.ryabchenko.publications.data.NetworkPublicationRepository
+import ru.omgtu.ryabchenko.publications.data.network.PublicationApi
+import ru.omgtu.ryabchenko.publications.data.network.publicationHttpClient
 import ru.omgtu.ryabchenko.publications.domain.PublicationRepository
 import ru.omgtu.ryabchenko.publications.ui.detail.PublicationDetailViewModelFactory
 import ru.omgtu.ryabchenko.publications.ui.list.PublicationListViewModelFactory
@@ -30,7 +32,9 @@ import ru.omgtu.ryabchenko.publications.ui.theme.AppTheme
 @Composable
 fun App() {
     var darkTheme by remember { mutableStateOf(false) }
-    val repository: PublicationRepository = remember { PublicationRepositoryImpl() }
+    val repository: PublicationRepository = remember {
+        NetworkPublicationRepository(api = PublicationApi(publicationHttpClient()))
+    }
     val navigator = remember { Navigator() }
     val listViewModelFactory = remember { PublicationListViewModelFactory(navigator, repository) }
     val detailViewModelFactory = remember { PublicationDetailViewModelFactory(navigator, repository) }
