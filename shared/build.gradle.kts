@@ -1,3 +1,4 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -6,6 +7,8 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -57,6 +60,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
+            implementation(libs.ktor.client.cio)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -70,12 +74,27 @@ kotlin {
             implementation(libs.navigation3.runtime)
             implementation(libs.navigation3.ui)
             implementation(libs.kotlinx.coroutinesCore)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.contentNegotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
         jsMain.dependencies {
             implementation(libs.wrappers.browser)
+            implementation(libs.ktor.client.js)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
     }
 }
@@ -91,4 +110,11 @@ composeCompiler {
 
 compose.resources {
     publicResClass = true
+}
+
+buildkonfig {
+    packageName = "ru.omgtu.ryabchenko.publications"
+    defaultConfigs {
+        buildConfigField(STRING, "BASE_URL", providers.gradleProperty("BASE_URL").get())
+    }
 }
