@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_title">Publications</string>
+    <string name="back">Back</string>
+    <string name="theme_toggle">Toggle theme</string>
+    <string name="authors_label">Authors</string>
+    <string name="publication_date_label">Publication date</string>
+    <string name="subjects_label">Subjects</string>
+    <string name="publisher_label">Publisher</string>
+    <string name="type_label">Type</string>
+    <string name="search_hint">Search by title</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="related_label">Related publications</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_title">Публикации</string>
+    <string name="back">Назад</string>
+    <string name="theme_toggle">Переключить тему</string>
+    <string name="authors_label">Авторы</string>
+    <string name="publication_date_label">Дата публикации</string>
+    <string name="subjects_label">Тематики</string>
+    <string name="publisher_label">Издатель</string>
+    <string name="type_label">Тип</string>
+    <string name="search_hint">Поиск по названию</string>
+    <string name="nothing_found">Ничего не найдено</string>
+    <string name="related_label">Похожие публикации</string>
+</resources>
